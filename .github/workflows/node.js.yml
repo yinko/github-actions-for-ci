@@ -31,6 +31,17 @@ jobs:
         path: public
     - name: npm install, and test
 
+    steps:
+      - uses: actions/checkout@v2
+      - name: npm install and build webpack
+        run: |
+          npm install
+          npm run build
+
+  test:
+
+    runs-on: ubuntu-latest
+
     strategy:
       matrix:
         os: [ubuntu-latest, windows-2016]
@@ -53,7 +64,6 @@ jobs:
       env:
         CI: true
 
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -66,3 +76,4 @@ jobs:
         with:
           name: webpack artifacts
           path: public/
+
